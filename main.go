@@ -105,7 +105,7 @@ func main() {
 	ctx, cancel := notifyContext()
 	defer cancel()
 
-	setupLogging(ctx)
+	ctx = setupLogging(ctx)
 	// ********************************************************************************
 	// Configure open tracing
 	// ********************************************************************************
@@ -239,7 +239,7 @@ func logPhases(ctx context.Context) {
 	log.FromContext(ctx).Infof("a final success message with start time duration")
 }
 
-func setupLogging(ctx context.Context) {
+func setupLogging(ctx context.Context) context.Context {
 	// ********************************************************************************
 	// setup logging
 	// ********************************************************************************
@@ -250,6 +250,8 @@ func setupLogging(ctx context.Context) {
 	if err := debug.Self(); err != nil {
 		log.FromContext(ctx).Infof("%s", err)
 	}
+
+	return ctx
 }
 
 func setupConfig(ctx context.Context) *Config {
