@@ -88,11 +88,11 @@ type Config struct {
 
 // Process prints and processes env to config
 func (c *Config) Process() error {
-	if err := envconfig.Usage("nse", c); err != nil {
-		return errors.Wrap(err, "cannot show usage of envconfig nse")
+	if err := envconfig.Usage("nsm", c); err != nil {
+		return errors.Wrap(err, "cannot show usage of envconfig nsm")
 	}
-	if err := envconfig.Process("nse", c); err != nil {
-		return errors.Wrap(err, "cannot process envconfig nse")
+	if err := envconfig.Process("nsm", c); err != nil {
+		return errors.Wrap(err, "cannot process envconfig nsm")
 	}
 	return nil
 }
