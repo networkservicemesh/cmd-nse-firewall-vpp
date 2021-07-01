@@ -45,7 +45,6 @@ import (
 	"github.com/pkg/errors"
 	"github.com/sirupsen/logrus"
 	"github.com/spiffe/go-spiffe/v2/spiffetls/tlsconfig"
-	"github.com/spiffe/go-spiffe/v2/svid/x509svid"
 	"github.com/spiffe/go-spiffe/v2/workloadapi"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials"
@@ -105,7 +104,17 @@ func main() {
 	ctx, cancel := notifyContext()
 	defer cancel()
 
-	ctx = setupLogging(ctx)
+	// ********************************************************************************
+	// setup logging
+	// ********************************************************************************
+	logrus.SetFormatter(&nested.Formatter{})
+	ctx = log.WithFields(ctx, map[string]interface{}{"cmd": os.Args[0]})
+	ctx = log.WithLog(ctx, logruslogger.New(ctx))
+
+	if err := debug.Self(); err != nil {
+		log.FromContext(ctx).Infof("%s", err)
+	}
+
 	// ********************************************************************************
 	// Configure open tracing
 	// ********************************************************************************
@@ -113,10 +122,41 @@ func main() {
 	jaegerCloser := jaeger.InitJaeger(ctx, "cmd-nse-firewall-vpp")
 	defer func() { _ = jaegerCloser.Close() }()
 
+	// enumerating phases
+	log.FromContext(ctx).Infof("there are 6 phases which will be executed followed by a success message:")
+	log.FromContext(ctx).Infof("the phases include:")
+	log.FromContext(ctx).Infof("1: get config from environment")
+	log.FromContext(ctx).Infof("2: retrieve spiffe svid")
+	log.FromContext(ctx).Infof("3: create grpc client options")
+	log.FromContext(ctx).Infof("4: create firewall network service endpoint")
+	log.FromContext(ctx).Infof("5: create grpc and mount nse")
+	log.FromContext(ctx).Infof("6: register nse with nsm")
+	log.FromContext(ctx).Infof("a final success message with start time duration")
+
 	starttime := time.Now()
-	logPhases(ctx)
-	config := setupConfig(ctx)
-	source := retrieveSvid(ctx)
+
+	// ********************************************************************************
+	log.FromContext(ctx).Infof("executing phase 1: get config from environment")
+	// ********************************************************************************
+	config := new(Config)
+	if err := config.Process(); err != nil {
+		logrus.Fatal(err.Error())
+	}
+
+	log.FromContext(ctx).Infof("Config: %#v", config)
+
+	// ********************************************************************************
+	log.FromContext(ctx).Infof("executing phase 2: retrieving svid, check spire agent logs if this is the last line you see")
+	// ********************************************************************************
+	source, err := workloadapi.NewX509Source(ctx)
+	if err != nil {
+		logrus.Fatalf("error getting x509 source: %+v", err)
+	}
+	svid, err := source.GetX509SVID()
+	if err != nil {
+		logrus.Fatalf("error getting x509 svid: %+v", err)
+	}
+	log.FromContext(ctx).Infof("SVID: %q", svid.ID)
 
 	// ********************************************************************************
 	log.FromContext(ctx).Infof("executing phase 3: create grpc client options")
@@ -143,7 +183,43 @@ func main() {
 	// ********************************************************************************
 	vppConn, vppErrCh := vpphelper.StartAndDialContext(ctx)
 	exitOnErr(ctx, cancel, vppErrCh)
-	firewallEndpoint := getEndpoint(ctx, config, source, vppConn, clientOptions...)
+
+	var firewallEndpoint endpoint.Endpoint
+	firewallEndpoint = endpoint.NewServer(ctx,
+		spiffejwt.TokenGeneratorFunc(source, config.MaxTokenLifetime),
+		endpoint.WithName(config.Name),
+		endpoint.WithAuthorizeServer(authorize.NewServer()),
+		endpoint.WithAdditionalFunctionality(
+			recvfd.NewServer(),
+			sendfd.NewServer(),
+			up.NewServer(ctx, vppConn),
+			clienturl.NewServer(&config.ConnectTo),
+			heal.NewServer(ctx,
+				heal.WithOnHeal(addressof.NetworkServiceClient(adapters.NewServerToClient(firewallEndpoint))),
+				heal.WithOnRestore(heal.OnRestoreIgnore),
+			),
+			xconnect.NewServer(vppConn),
+			acl.NewServer(vppConn, aclconfig.GetACLRules(ctx)),
+			mechanisms.NewServer(map[string]networkservice.NetworkServiceServer{
+				memif.MECHANISM: chain.NewNetworkServiceServer(memif.NewServer(vppConn, memif.WithDirectMemifDisabled())),
+			}),
+			connect.NewServer(
+				ctx,
+				client.NewClientFactory(
+					client.WithName(config.Name),
+					client.WithAdditionalFunctionality(
+						metadata.NewClient(),
+						mechanismtranslation.NewClient(),
+						replacelabels.NewClient(config.Labels),
+						up.NewClient(ctx, vppConn),
+						xconnect.NewClient(vppConn),
+						memif.NewClient(vppConn),
+						sendfd.NewClient(),
+						recvfd.NewClient(),
+					)),
+				connect.WithDialOptions(clientOptions...),
+			),
+		))
 	// ********************************************************************************
 	log.FromContext(ctx).Infof("executing phase 5: create grpc server and register firewall-server")
 	// ********************************************************************************
@@ -224,104 +300,4 @@ func notifyContext() (context.Context, context.CancelFunc) {
 		syscall.SIGTERM,
 		syscall.SIGQUIT,
 	)
-}
-
-func logPhases(ctx context.Context) {
-	// enumerating phases
-	log.FromContext(ctx).Infof("there are 6 phases which will be executed followed by a success message:")
-	log.FromContext(ctx).Infof("the phases include:")
-	log.FromContext(ctx).Infof("1: get config from environment")
-	log.FromContext(ctx).Infof("2: retrieve spiffe svid")
-	log.FromContext(ctx).Infof("3: create grpc client options")
-	log.FromContext(ctx).Infof("4: create firewall network service endpoint")
-	log.FromContext(ctx).Infof("5: create grpc and mount nse")
-	log.FromContext(ctx).Infof("6: register nse with nsm")
-	log.FromContext(ctx).Infof("a final success message with start time duration")
-}
-
-func setupLogging(ctx context.Context) context.Context {
-	// ********************************************************************************
-	// setup logging
-	// ********************************************************************************
-	logrus.SetFormatter(&nested.Formatter{})
-	ctx = log.WithFields(ctx, map[string]interface{}{"cmd": os.Args[0]})
-	ctx = log.WithLog(ctx, logruslogger.New(ctx))
-
-	if err := debug.Self(); err != nil {
-		log.FromContext(ctx).Infof("%s", err)
-	}
-
-	return ctx
-}
-
-func setupConfig(ctx context.Context) *Config {
-	// ********************************************************************************
-	log.FromContext(ctx).Infof("executing phase 1: get config from environment")
-	// ********************************************************************************
-	config := new(Config)
-	if err := config.Process(); err != nil {
-		logrus.Fatal(err.Error())
-	}
-
-	log.FromContext(ctx).Infof("Config: %#v", config)
-
-	return config
-}
-
-func retrieveSvid(ctx context.Context) *workloadapi.X509Source {
-	// ********************************************************************************
-	log.FromContext(ctx).Infof("executing phase 2: retrieving svid, check spire agent logs if this is the last line you see")
-	// ********************************************************************************
-	source, err := workloadapi.NewX509Source(ctx)
-	if err != nil {
-		logrus.Fatalf("error getting x509 source: %+v", err)
-	}
-	svid, err := source.GetX509SVID()
-	if err != nil {
-		logrus.Fatalf("error getting x509 svid: %+v", err)
-	}
-	log.FromContext(ctx).Infof("SVID: %q", svid.ID)
-
-	return source
-}
-
-func getEndpoint(ctx context.Context, config *Config, source x509svid.Source, vppConn vpphelper.Connection, clientOptions ...grpc.DialOption) endpoint.Endpoint {
-	var firewallEndpoint endpoint.Endpoint
-	firewallEndpoint = endpoint.NewServer(ctx,
-		spiffejwt.TokenGeneratorFunc(source, config.MaxTokenLifetime),
-		endpoint.WithName(config.Name),
-		endpoint.WithAuthorizeServer(authorize.NewServer()),
-		endpoint.WithAdditionalFunctionality(
-			recvfd.NewServer(),
-			sendfd.NewServer(),
-			up.NewServer(ctx, vppConn),
-			clienturl.NewServer(&config.ConnectTo),
-			heal.NewServer(ctx,
-				heal.WithOnHeal(addressof.NetworkServiceClient(adapters.NewServerToClient(firewallEndpoint))),
-				heal.WithOnRestore(heal.OnRestoreIgnore),
-			),
-			xconnect.NewServer(vppConn),
-			acl.NewServer(vppConn, aclconfig.GetACLRules(ctx)),
-			mechanisms.NewServer(map[string]networkservice.NetworkServiceServer{
-				memif.MECHANISM: chain.NewNetworkServiceServer(memif.NewServer(vppConn, memif.WithDirectMemifDisabled())),
-			}),
-			connect.NewServer(
-				ctx,
-				client.NewClientFactory(
-					client.WithName(config.Name),
-					client.WithAdditionalFunctionality(
-						metadata.NewClient(),
-						mechanismtranslation.NewClient(),
-						replacelabels.NewClient(config.Labels),
-						up.NewClient(ctx, vppConn),
-						xconnect.NewClient(vppConn),
-						memif.NewClient(vppConn),
-						sendfd.NewClient(),
-						recvfd.NewClient(),
-					)),
-				connect.WithDialOptions(clientOptions...),
-			),
-		))
-
-	return firewallEndpoint
 }
