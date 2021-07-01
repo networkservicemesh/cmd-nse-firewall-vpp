@@ -32,11 +32,11 @@ type aclConfig struct {
 }
 
 // GetACLRules reads config file with rules for acl filtering and return it as map
-func GetACLRules(ctx context.Context) (rules []acl_types.ACLRule) {
+func GetACLRules(ctx context.Context, path string) (rules []acl_types.ACLRule) {
 	var resultRules []acl_types.ACLRule
 	logger := log.FromContext(ctx).WithField("acl", "config")
 
-	raw, err := ioutil.ReadFile("/etc/vppagent-firewall/config.yaml")
+	raw, err := ioutil.ReadFile(path)
 	if err != nil {
 		logger.Errorf("Error reading config file: %v", err)
 		return resultRules

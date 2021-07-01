@@ -20,6 +20,7 @@ package main
 
 import (
 	"context"
+	"github.com/edwarnicke/govpp/binapi/acl_types"
 	"io/ioutil"
 	"net/url"
 	"os"
@@ -78,12 +79,14 @@ import (
 
 // Config holds configuration parameters from environment variables
 type Config struct {
-	Name             string            `default:"firewall-server" desc:"Name of Firewall Server"`
-	ListenOn         string            `default:"listen.on.sock" desc:"listen on socket" split_words:"true"`
-	ConnectTo        url.URL           `default:"unix:///var/lib/networkservicemesh/nsm.io.sock" desc:"url to connect to" split_words:"true"`
-	MaxTokenLifetime time.Duration     `default:"24h" desc:"maximum lifetime of tokens" split_words:"true"`
-	ServiceName      string            `default:"" desc:"Name of providing service" split_words:"true"`
-	Labels           map[string]string `default:"" desc:"Endpoint labels"`
+	Name             string              `default:"firewall-server" desc:"Name of Firewall Server"`
+	ListenOn         string              `default:"listen.on.sock" desc:"listen on socket" split_words:"true"`
+	ConnectTo        url.URL             `default:"unix:///var/lib/networkservicemesh/nsm.io.sock" desc:"url to connect to" split_words:"true"`
+	MaxTokenLifetime time.Duration       `default:"24h" desc:"maximum lifetime of tokens" split_words:"true"`
+	ServiceName      string              `default:"" desc:"Name of providing service" split_words:"true"`
+	Labels           map[string]string   `default:"" desc:"Endpoint labels"`
+	AclConfigPath    string              `default:"/etc/vppagent-firewall/config.yaml" desc:"Path to ACL config file" split_words:"true"`
+	AclConfig        []acl_types.ACLRule `default:"" desc:"configured acl rules"`
 }
 
 // Process prints and processes env to config
@@ -143,6 +146,8 @@ func main() {
 		logrus.Fatal(err.Error())
 	}
 
+	config.AclConfig = aclconfig.GetACLRules(ctx, config.AclConfigPath)
+
 	log.FromContext(ctx).Infof("Config: %#v", config)
 
 	// ********************************************************************************
@@ -199,7 +204,7 @@ func main() {
 				heal.WithOnRestore(heal.OnRestoreIgnore),
 			),
 			xconnect.NewServer(vppConn),
-			acl.NewServer(vppConn, aclconfig.GetACLRules(ctx)),
+			acl.NewServer(vppConn, config.AclConfig),
 			mechanisms.NewServer(map[string]networkservice.NetworkServiceServer{
 				memif.MECHANISM: chain.NewNetworkServiceServer(memif.NewServer(vppConn, memif.WithDirectMemifDisabled())),
 			}),
