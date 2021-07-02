@@ -20,6 +20,7 @@ package aclconfig
 import (
 	"context"
 	"io/ioutil"
+	"path/filepath"
 
 	"github.com/edwarnicke/govpp/binapi/acl_types"
 	"gopkg.in/yaml.v2"
@@ -36,7 +37,7 @@ func GetACLRules(ctx context.Context, path string) (rules []acl_types.ACLRule) {
 	var resultRules []acl_types.ACLRule
 	logger := log.FromContext(ctx).WithField("acl", "config")
 
-	raw, err := ioutil.ReadFile(path)
+	raw, err := ioutil.ReadFile(filepath.Clean(path))
 	if err != nil {
 		logger.Errorf("Error reading config file: %v", err)
 		return resultRules

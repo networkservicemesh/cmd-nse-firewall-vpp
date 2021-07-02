@@ -20,7 +20,6 @@ package main
 
 import (
 	"context"
-	"github.com/edwarnicke/govpp/binapi/acl_types"
 	"io/ioutil"
 	"net/url"
 	"os"
@@ -40,6 +39,7 @@ import (
 	"github.com/networkservicemesh/sdk/pkg/tools/token"
 
 	nested "github.com/antonfisher/nested-logrus-formatter"
+	"github.com/edwarnicke/govpp/binapi/acl_types"
 	"github.com/edwarnicke/grpcfd"
 	"github.com/edwarnicke/vpphelper"
 	"github.com/kelseyhightower/envconfig"
@@ -85,8 +85,8 @@ type Config struct {
 	MaxTokenLifetime time.Duration       `default:"24h" desc:"maximum lifetime of tokens" split_words:"true"`
 	ServiceName      string              `default:"" desc:"Name of providing service" split_words:"true"`
 	Labels           map[string]string   `default:"" desc:"Endpoint labels"`
-	AclConfigPath    string              `default:"/etc/vppagent-firewall/config.yaml" desc:"Path to ACL config file" split_words:"true"`
-	AclConfig        []acl_types.ACLRule `default:"" desc:"configured acl rules"`
+	ACLConfigPath    string              `default:"/etc/vppagent-firewall/config.yaml" desc:"Path to ACL config file" split_words:"true"`
+	ACLConfig        []acl_types.ACLRule `default:"" desc:"configured acl rules"`
 }
 
 // Process prints and processes env to config
@@ -106,25 +106,21 @@ func main() {
 	// ********************************************************************************
 	ctx, cancel := notifyContext()
 	defer cancel()
-
 	// ********************************************************************************
 	// setup logging
 	// ********************************************************************************
 	logrus.SetFormatter(&nested.Formatter{})
 	ctx = log.WithFields(ctx, map[string]interface{}{"cmd": os.Args[0]})
 	ctx = log.WithLog(ctx, logruslogger.New(ctx))
-
 	if err := debug.Self(); err != nil {
 		log.FromContext(ctx).Infof("%s", err)
 	}
-
 	// ********************************************************************************
 	// Configure open tracing
 	// ********************************************************************************
 	log.EnableTracing(true)
 	jaegerCloser := jaeger.InitJaeger(ctx, "cmd-nse-firewall-vpp")
 	defer func() { _ = jaegerCloser.Close() }()
-
 	// enumerating phases
 	log.FromContext(ctx).Infof("there are 6 phases which will be executed followed by a success message:")
 	log.FromContext(ctx).Infof("the phases include:")
@@ -146,7 +142,7 @@ func main() {
 		logrus.Fatal(err.Error())
 	}
 
-	config.AclConfig = aclconfig.GetACLRules(ctx, config.AclConfigPath)
+	config.ACLConfig = aclconfig.GetACLRules(ctx, config.ACLConfigPath)
 
 	log.FromContext(ctx).Infof("Config: %#v", config)
 
@@ -204,9 +200,9 @@ func main() {
 				heal.WithOnRestore(heal.OnRestoreIgnore),
 			),
 			xconnect.NewServer(vppConn),
-			acl.NewServer(vppConn, config.AclConfig),
+			acl.NewServer(vppConn, config.ACLConfig),
 			mechanisms.NewServer(map[string]networkservice.NetworkServiceServer{
-				memif.MECHANISM: chain.NewNetworkServiceServer(memif.NewServer(vppConn, memif.WithDirectMemifDisabled())),
+				memif.MECHANISM: chain.NewNetworkServiceServer(memif.NewServer(vppConn)),
 			}),
 			connect.NewServer(
 				ctx,
