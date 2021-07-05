@@ -49,6 +49,7 @@ import (
 	"github.com/spiffe/go-spiffe/v2/workloadapi"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials"
+	"gopkg.in/yaml.v2"
 
 	"github.com/networkservicemesh/api/pkg/api/networkservice"
 	registryapi "github.com/networkservicemesh/api/pkg/api/registry"
@@ -73,8 +74,6 @@ import (
 	"github.com/networkservicemesh/sdk/pkg/tools/log/logruslogger"
 	"github.com/networkservicemesh/sdk/pkg/tools/opentracing"
 	"github.com/networkservicemesh/sdk/pkg/tools/spiffejwt"
-
-	aclconfig "github.com/networkservicemesh/cmd-template/internal/config"
 )
 
 // Config holds configuration parameters from environment variables
@@ -142,7 +141,7 @@ func main() {
 		logrus.Fatal(err.Error())
 	}
 
-	config.ACLConfig = aclconfig.GetACLRules(ctx, config.ACLConfigPath)
+	config.retrieveACLRules(ctx)
 
 	log.FromContext(ctx).Infof("Config: %#v", config)
 
@@ -301,4 +300,29 @@ func notifyContext() (context.Context, context.CancelFunc) {
 		syscall.SIGTERM,
 		syscall.SIGQUIT,
 	)
+}
+
+func (c *Config) retrieveACLRules(ctx context.Context) {
+	logger := log.FromContext(ctx).WithField("acl", "config")
+
+	raw, err := ioutil.ReadFile(filepath.Clean(c.ACLConfigPath))
+	if err != nil {
+		logger.Errorf("Error reading config file: %v", err)
+		return
+	}
+	logger.Infof("Read config file successfully")
+
+	var rv map[string]acl_types.ACLRule
+	err = yaml.Unmarshal(raw, &rv)
+	if err != nil {
+		logger.Errorf("Error parsing config file: %v", err)
+		return
+	}
+	logger.Infof("Parsed acl rules successfully")
+
+	for _, v := range rv {
+		c.ACLConfig = append(c.ACLConfig, v)
+	}
+
+	logger.Infof("Result rules:%v", c.ACLConfig)
 }
