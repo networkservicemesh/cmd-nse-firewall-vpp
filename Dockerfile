@@ -13,6 +13,9 @@ RUN dl https://github.com/spiffe/spire/releases/download/v0.11.1/spire-0.11.1-li
 
 FROM go as build
 WORKDIR /build
+COPY go.mod go.sum ./
+COPY ./internal/imports ./internal/imports
+RUN go build ./internal/imports
 COPY . .
 RUN go build -o /bin/app .
 
