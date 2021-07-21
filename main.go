@@ -81,7 +81,7 @@ type Config struct {
 	Name             string              `default:"firewall-server" desc:"Name of Firewall Server"`
 	ListenOn         string              `default:"listen.on.sock" desc:"listen on socket" split_words:"true"`
 	ConnectTo        url.URL             `default:"unix:///var/lib/networkservicemesh/nsm.io.sock" desc:"url to connect to" split_words:"true"`
-	MaxTokenLifetime time.Duration       `default:"24h" desc:"maximum lifetime of tokens" split_words:"true"`
+	MaxTokenLifetime time.Duration       `default:"10m" desc:"maximum lifetime of tokens" split_words:"true"`
 	ServiceName      string              `default:"" desc:"Name of providing service" split_words:"true"`
 	Labels           map[string]string   `default:"" desc:"Endpoint labels"`
 	ACLConfigPath    string              `default:"/etc/vppagent-firewall/config.yaml" desc:"Path to ACL config file" split_words:"true"`
