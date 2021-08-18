@@ -4,7 +4,7 @@ go 1.16
 
 require (
 	github.com/antonfisher/nested-logrus-formatter v1.3.1
-	github.com/edwarnicke/govpp v0.0.0-20210613224216-90cfa3213b00
+	github.com/edwarnicke/govpp v0.0.0-20210817123650-e0e3b4843cf5
 	github.com/edwarnicke/grpcfd v0.1.0
 	github.com/edwarnicke/vpphelper v0.0.0-20210512223648-f914b171f679
 	github.com/kelseyhightower/envconfig v1.4.0
