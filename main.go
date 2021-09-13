@@ -184,8 +184,8 @@ func main() {
 	vppConn, vppErrCh := vpphelper.StartAndDialContext(ctx)
 	exitOnErr(ctx, cancel, vppErrCh)
 
-	var firewallEndpoint endpoint.Endpoint
-	firewallEndpoint = endpoint.NewServer(ctx,
+	firewallEndpoint := new(struct{ endpoint.Endpoint })
+	firewallEndpoint.Endpoint = endpoint.NewServer(ctx,
 		spiffejwt.TokenGeneratorFunc(source, config.MaxTokenLifetime),
 		endpoint.WithName(config.Name),
 		endpoint.WithAuthorizeServer(authorize.NewServer()),
