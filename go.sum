@@ -1,8 +1,8 @@
 cloud.google.com/go v0.26.0/go.mod h1:aQUYkXzVsufM+DwF1aE+0xfcU+56JwCaLick0ClmMTw=
 cloud.google.com/go v0.34.0/go.mod h1:aQUYkXzVsufM+DwF1aE+0xfcU+56JwCaLick0ClmMTw=
 git.fd.io/govpp.git v0.3.6-0.20210202134006-4c1cccf48cd1/go.mod h1:OCVd4W8SH+666KRQoMj6PM+oipLDZAHhqMz9B1TGbgI=
-git.fd.io/govpp.git v0.3.6-0.20210615121054-5de7f6b85458 h1:6I9Hu2Tfg8qYtjKrdD9aRhIvMnNHQhh6MEoDC0hd8zc=
-git.fd.io/govpp.git v0.3.6-0.20210615121054-5de7f6b85458/go.mod h1:OCVd4W8SH+666KRQoMj6PM+oipLDZAHhqMz9B1TGbgI=
+git.fd.io/govpp.git v0.3.6-0.20210927044411-385ccc0d8ba9 h1:QFHVGWCWf6e226vMy1zU614eC3glrfJO2CwREUk8D6s=
+git.fd.io/govpp.git v0.3.6-0.20210927044411-385ccc0d8ba9/go.mod h1:OCVd4W8SH+666KRQoMj6PM+oipLDZAHhqMz9B1TGbgI=
 github.com/BurntSushi/toml v0.3.1/go.mod h1:xHWCNGjB5oqiDr8zfno3MHue2Ht5sIBksp03qcyfWMU=
 github.com/DataDog/datadog-go v2.2.0+incompatible/go.mod h1:LButxg5PwREeZtORoXG3tL4fMGNddJ+vMq1mwgfaqoQ=
 github.com/HdrHistogram/hdrhistogram-go v1.0.1 h1:GX8GAYDuhlFQnI2fRDHQhTlkHMz8bEn0jTI6LJU0mpw=
@@ -33,8 +33,8 @@ github.com/davecgh/go-spew v1.1.1 h1:vj9j/u1bqnvCEfJOwUhtlOARqs3+rkHYY13jYWTU97c
 github.com/davecgh/go-spew v1.1.1/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/edwarnicke/exechelper v1.0.2 h1:dD49Ui2U0FBFxxhalnKw6vLS0P0TkgnXBRvKL/xmC5w=
 github.com/edwarnicke/exechelper v1.0.2/go.mod h1:/T271jtNX/ND4De6pa2aRy2+8sNtyCDB1A2pp4M+fUs=
-github.com/edwarnicke/govpp v0.0.0-20210817123650-e0e3b4843cf5 h1:G9dEjCjU24jMtuWnWEgZ9eO2x5BPlyrmPLOK9nkfKnU=
-github.com/edwarnicke/govpp v0.0.0-20210817123650-e0e3b4843cf5/go.mod h1:qCZYvdwFh5TJepc7DwDmOQ9olgfLjjX90JlyRE4SpYw=
+github.com/edwarnicke/govpp v0.0.0-20210928024809-7b7ae743b62d h1:KvhkLWa50BIeFWBTEEQJnH69BLc7VfRQWISbN3jCgX4=
+github.com/edwarnicke/govpp v0.0.0-20210928024809-7b7ae743b62d/go.mod h1:kHDnxA+SSNFeMEHz7xvhub1zvx4mOTRlWWRCay2n5NM=
 github.com/edwarnicke/grpcfd v0.1.0 h1:f0lmmNDYawQaW+dMNoF8d4DxwPxxczNSFuvu5C7ptRk=
 github.com/edwarnicke/grpcfd v0.1.0/go.mod h1:rHihB9YvNMixz8rS+ZbwosI2kj65VLkeyYAI2M+/cGA=
 github.com/edwarnicke/log v1.0.0 h1:T6uRNCmR99GTt/CpRr2Gz8eGW8fm0HMThDNGdNxPaGk=
@@ -152,8 +152,8 @@ github.com/networkservicemesh/api v1.0.1-0.20210907194827-9a36433d7d6e/go.mod h1
 github.com/networkservicemesh/sdk v0.5.1-0.20210928064205-dd436eb4ed4f h1:ngBVc03Z9k+V6IQGV/GT/Aq2TglHIDETGbtVoCvhQQQ=
 github.com/networkservicemesh/sdk v0.5.1-0.20210928064205-dd436eb4ed4f/go.mod h1:eISPu+ySJJ46kg03ZTi/xmpNSU+K4cImwq++ZbDV4F4=
 github.com/networkservicemesh/sdk-kernel v0.0.0-20210928064414-8237d1940dab/go.mod h1:0V+2MBFK1B8IsSHKk6yYjc12xUUQwV49KCUve9lah7c=
-github.com/networkservicemesh/sdk-vpp v0.0.0-20210928064717-f51410a45033 h1:g1r42Ml3P46rfxuUR1E7MPUriEWBD8G9AWDUbnbpwfw=
-github.com/networkservicemesh/sdk-vpp v0.0.0-20210928064717-f51410a45033/go.mod h1:HrBLMVafBfrj6XhC1J9gWkwvzCLbWsE1x5+b/NQF76A=
+github.com/networkservicemesh/sdk-vpp v0.0.0-20210928090848-c72337937ace h1:J22jPUsLxmScuCvPTGjJAwsxxBIHXQLhQ2jVFHNGFqo=
+github.com/networkservicemesh/sdk-vpp v0.0.0-20210928090848-c72337937ace/go.mod h1:CZlzdHakYg5Pm53/ux5sSHDL5iMsy0B3BEP78HK6NU8=
 github.com/niemeyer/pretty v0.0.0-20200227124842-a10e7caefd8e h1:fD57ERR4JtEqsWbfPhv4DMiApHyliiK5xCTNVSPiaAs=
 github.com/niemeyer/pretty v0.0.0-20200227124842-a10e7caefd8e/go.mod h1:zD1mROLANZcx1PVRCS0qkT7pwLkGfwJo4zjcN/Tysno=
 github.com/olekukonko/tablewriter v0.0.1/go.mod h1:vsDQFd/mU46D+Z4whnwzcISnGGzXWMclvtLoiIKAKIo=
