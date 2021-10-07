@@ -86,6 +86,7 @@ type Config struct {
 	Labels           map[string]string   `default:"" desc:"Endpoint labels"`
 	ACLConfigPath    string              `default:"/etc/vppagent-firewall/config.yaml" desc:"Path to ACL config file" split_words:"true"`
 	ACLConfig        []acl_types.ACLRule `default:"" desc:"configured acl rules"`
+	LogLevel         string              `default:"INFO" desc:"Log level" split_words:"true"`
 }
 
 // Process prints and processes env to config
@@ -140,6 +141,7 @@ func main() {
 	if err := config.Process(); err != nil {
 		logrus.Fatal(err.Error())
 	}
+	setLogLevel(config.LogLevel)
 
 	config.retrieveACLRules(ctx)
 
@@ -325,4 +327,12 @@ func (c *Config) retrieveACLRules(ctx context.Context) {
 	}
 
 	logger.Infof("Result rules:%v", c.ACLConfig)
+}
+
+func setLogLevel(level string) {
+	l, err := logrus.ParseLevel(level)
+	if err != nil {
+		logrus.Fatalf("invalid log level %s", level)
+	}
+	logrus.SetLevel(l)
 }
