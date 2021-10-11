@@ -141,7 +141,11 @@ func main() {
 	if err := config.Process(); err != nil {
 		logrus.Fatal(err.Error())
 	}
-	setLogLevel(config.LogLevel)
+	l, err := logrus.ParseLevel(config.LogLevel)
+	if err != nil {
+		logrus.Fatalf("invalid log level %s", config.LogLevel)
+	}
+	logrus.SetLevel(l)
 
 	config.retrieveACLRules(ctx)
 
@@ -327,12 +331,4 @@ func (c *Config) retrieveACLRules(ctx context.Context) {
 	}
 
 	logger.Infof("Result rules:%v", c.ACLConfig)
-}
-
-func setLogLevel(level string) {
-	l, err := logrus.ParseLevel(level)
-	if err != nil {
-		logrus.Fatalf("invalid log level %s", level)
-	}
-	logrus.SetLevel(l)
 }
