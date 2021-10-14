@@ -31,11 +31,8 @@ import (
 	"github.com/networkservicemesh/sdk/pkg/networkservice/chains/client"
 	"github.com/networkservicemesh/sdk/pkg/networkservice/common/clienturl"
 	"github.com/networkservicemesh/sdk/pkg/networkservice/common/connect"
-	"github.com/networkservicemesh/sdk/pkg/networkservice/common/heal"
 	"github.com/networkservicemesh/sdk/pkg/networkservice/common/mechanisms/recvfd"
 	"github.com/networkservicemesh/sdk/pkg/networkservice/common/replacelabels"
-	"github.com/networkservicemesh/sdk/pkg/networkservice/core/adapters"
-	"github.com/networkservicemesh/sdk/pkg/tools/addressof"
 	"github.com/networkservicemesh/sdk/pkg/tools/token"
 
 	nested "github.com/antonfisher/nested-logrus-formatter"
@@ -200,19 +197,17 @@ func main() {
 			sendfd.NewServer(),
 			up.NewServer(ctx, vppConn),
 			clienturl.NewServer(&config.ConnectTo),
-			heal.NewServer(ctx,
-				heal.WithOnHeal(addressof.NetworkServiceClient(adapters.NewServerToClient(firewallEndpoint))),
-				heal.WithOnRestore(heal.OnRestoreIgnore),
-			),
 			xconnect.NewServer(vppConn),
 			acl.NewServer(vppConn, config.ACLConfig),
 			mechanisms.NewServer(map[string]networkservice.NetworkServiceServer{
 				memif.MECHANISM: chain.NewNetworkServiceServer(memif.NewServer(vppConn)),
 			}),
 			connect.NewServer(
-				ctx,
-				client.NewClientFactory(
+				client.NewClient(
+					ctx,
+					client.WithoutRefresh(),
 					client.WithName(config.Name),
+					client.WithDialOptions(clientOptions...),
 					client.WithAdditionalFunctionality(
 						metadata.NewClient(),
 						mechanismtranslation.NewClient(),
@@ -223,7 +218,6 @@ func main() {
 						sendfd.NewClient(),
 						recvfd.NewClient(),
 					)),
-				connect.WithDialOptions(clientOptions...),
 			),
 		))
 	// ********************************************************************************
