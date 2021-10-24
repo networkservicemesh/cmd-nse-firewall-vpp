@@ -1,4 +1,4 @@
-ARG VPP_VERSION=v21.06.0-9-16f166164
+ARG VPP_VERSION=v22.02-rc0-100-gac6dd7c7f
 FROM ghcr.io/edwarnicke/govpp/vpp:${VPP_VERSION} as go
 COPY --from=golang:1.16.3-buster /usr/local/go/ /go
 ENV PATH ${PATH}:/go/bin
