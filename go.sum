@@ -162,8 +162,8 @@ github.com/networkservicemesh/api v1.0.1-0.20211108174538-15c88bce33f3/go.mod h1
 github.com/networkservicemesh/sdk v0.5.1-0.20211108225443-65796945d24d h1:BoWsZOKlgVckGppw4pBzBo4ydAmFLCJpyqZV3niTc1A=
 github.com/networkservicemesh/sdk v0.5.1-0.20211108225443-65796945d24d/go.mod h1:fl6NjUK8+m+z7B1yoA0AowE0BpvjazfX0PQvr2gDnho=
 github.com/networkservicemesh/sdk-kernel v0.0.0-20211108225859-2db0822a1c14/go.mod h1:u7vQCgUUT0DzW0xVFadc8p8ItGmgDB5Ho2qke3ewdnQ=
-github.com/networkservicemesh/sdk-vpp v0.0.0-20211108233028-6925316542f1 h1:QI9RJKNFh8LQ+Q2ZFjOIbmvaD74+Rpv88X6jKgK+8q4=
-github.com/networkservicemesh/sdk-vpp v0.0.0-20211108233028-6925316542f1/go.mod h1:ypHVrxveXzME4bHL61nwwRXUPfwWL0vNQT6/yMI9J3w=
+github.com/networkservicemesh/sdk-vpp v0.0.0-20211108235351-e35775c814d4 h1:eb2HFbut/ax4x1JkpKvg+2q8EWOrMh+2AIArXaCw1Oc=
+github.com/networkservicemesh/sdk-vpp v0.0.0-20211108235351-e35775c814d4/go.mod h1:ypHVrxveXzME4bHL61nwwRXUPfwWL0vNQT6/yMI9J3w=
 github.com/niemeyer/pretty v0.0.0-20200227124842-a10e7caefd8e h1:fD57ERR4JtEqsWbfPhv4DMiApHyliiK5xCTNVSPiaAs=
 github.com/niemeyer/pretty v0.0.0-20200227124842-a10e7caefd8e/go.mod h1:zD1mROLANZcx1PVRCS0qkT7pwLkGfwJo4zjcN/Tysno=
 github.com/olekukonko/tablewriter v0.0.1/go.mod h1:vsDQFd/mU46D+Z4whnwzcISnGGzXWMclvtLoiIKAKIo=
