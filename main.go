@@ -199,7 +199,7 @@ func main() {
 			xconnect.NewServer(vppConn),
 			acl.NewServer(vppConn, config.ACLConfig),
 			mechanisms.NewServer(map[string]networkservice.NetworkServiceServer{
-				memif.MECHANISM: chain.NewNetworkServiceServer(memif.NewServer(vppConn)),
+				memif.MECHANISM: chain.NewNetworkServiceServer(memif.NewServer(ctx, vppConn)),
 			}),
 			connect.NewServer(
 				client.NewClient(
