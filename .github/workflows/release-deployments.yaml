@@ -74,6 +74,7 @@ jobs:
           path: networkservicemesh/deployments-k8s
           repository: networkservicemesh/deployments-k8s
           token: ${{ secrets.NSM_BOT_GITHUB_TOKEN }}
+          ref: release/${{ steps.get-tag-step.outputs.tag }}
 
       - name: Find and Replace ci/${{ github.repository }} version
         uses: jacobtomlinson/gha-find-replace@master
