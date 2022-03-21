@@ -201,8 +201,8 @@ github.com/networkservicemesh/sdk v0.5.1-0.20220321161040-57746e0ee944 h1:iBGlBY
 github.com/networkservicemesh/sdk v0.5.1-0.20220321161040-57746e0ee944/go.mod h1:fK/G5mfEDIefFXxRSNXqj1jjd8SEUeZMpQUdCuc7owY=
 github.com/networkservicemesh/sdk-kernel v0.0.0-20220321161525-bf402c135e31 h1:m6QErGiUT3V6VfH6BhKZNdTZoOabWr1CHnliUhxW3zA=
 github.com/networkservicemesh/sdk-kernel v0.0.0-20220321161525-bf402c135e31/go.mod h1:1ba6/YHNR6jB2+5r7k0fNjsCW7mbdL/ncgrKyvYwvbc=
-github.com/networkservicemesh/sdk-vpp v0.0.0-20220321162027-a3bec536d69e h1:WhA99ItynL0roMwaXUbNikzPzsRdQ3RWIvf8WuZTNYE=
-github.com/networkservicemesh/sdk-vpp v0.0.0-20220321162027-a3bec536d69e/go.mod h1:/epLOZnL3DLPz73LtbuWmxYSKZO39rgvhoCNlNP8b4U=
+github.com/networkservicemesh/sdk-vpp v0.0.0-20220321224401-09bb043197f0 h1:2/XoNeWWTGSBMTtlIZEtPID0qsKh9mIl+PqeBOV4G0Y=
+github.com/networkservicemesh/sdk-vpp v0.0.0-20220321224401-09bb043197f0/go.mod h1:/epLOZnL3DLPz73LtbuWmxYSKZO39rgvhoCNlNP8b4U=
 github.com/nxadm/tail v1.4.4/go.mod h1:kenIhsEOeOJmVchQTgglprH7qJGnHDVpk1VPCcaMI8A=
 github.com/nxadm/tail v1.4.8/go.mod h1:+ncqLTQzXmGhMZNUePPaPqPvBxHAIsmXswZKocGu+AU=
 github.com/olekukonko/tablewriter v0.0.1/go.mod h1:vsDQFd/mU46D+Z4whnwzcISnGGzXWMclvtLoiIKAKIo=
