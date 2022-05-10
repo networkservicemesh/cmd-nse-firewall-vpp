@@ -48,8 +48,8 @@ github.com/eapache/go-xerial-snappy v0.0.0-20180814174437-776d5712da21/go.mod h1
 github.com/eapache/queue v1.1.0/go.mod h1:6eCeP0CKFpHLu8blIFXhExK/dRa7WDZfr6jVFPTqq+I=
 github.com/edwarnicke/exechelper v1.0.2 h1:dD49Ui2U0FBFxxhalnKw6vLS0P0TkgnXBRvKL/xmC5w=
 github.com/edwarnicke/exechelper v1.0.2/go.mod h1:/T271jtNX/ND4De6pa2aRy2+8sNtyCDB1A2pp4M+fUs=
-github.com/edwarnicke/govpp v0.0.0-20220311182453-f32f292e0e91 h1:iDVzIaYZjTg+hQGcDeOLJZc+5VfKvW7ye54EFX3CRQA=
-github.com/edwarnicke/govpp v0.0.0-20220311182453-f32f292e0e91/go.mod h1:kHDnxA+SSNFeMEHz7xvhub1zvx4mOTRlWWRCay2n5NM=
+github.com/edwarnicke/govpp v0.0.0-20220509171552-731995b8f574 h1:2lYhLBDjflBOPJLd/42txk9QlSkVep6p1vKzlvkCKOI=
+github.com/edwarnicke/govpp v0.0.0-20220509171552-731995b8f574/go.mod h1:kHDnxA+SSNFeMEHz7xvhub1zvx4mOTRlWWRCay2n5NM=
 github.com/edwarnicke/grpcfd v1.1.2 h1:2b8kCABQ1+JjSKGDoHadqSW7whCeTXMqtyo6jmB5B8k=
 github.com/edwarnicke/grpcfd v1.1.2/go.mod h1:rHihB9YvNMixz8rS+ZbwosI2kj65VLkeyYAI2M+/cGA=
 github.com/edwarnicke/log v1.0.0 h1:T6uRNCmR99GTt/CpRr2Gz8eGW8fm0HMThDNGdNxPaGk=
@@ -201,8 +201,8 @@ github.com/networkservicemesh/sdk v0.5.1-0.20220507173809-41196bdf49db h1:Ux4NNm
 github.com/networkservicemesh/sdk v0.5.1-0.20220507173809-41196bdf49db/go.mod h1:G+NdPbtzcOWx1VljOj+L4kvZPQyYpiwCp84JYs+hGtc=
 github.com/networkservicemesh/sdk-kernel v0.0.0-20220507174054-396e6556b392 h1:YZb2ZBcvd7/8mLy7aANZ34HriunHQuqzPbs6fXYZve0=
 github.com/networkservicemesh/sdk-kernel v0.0.0-20220507174054-396e6556b392/go.mod h1:bqow7oO97KM7UJBW3/bb19HQV96XZ2mEb2jBzuJrEkY=
-github.com/networkservicemesh/sdk-vpp v0.0.0-20220507174519-44b1566df8bc h1:f1PR/fPNDU0CGr0LW5+q64O7gLlQLSUlUEOhe2hVOK0=
-github.com/networkservicemesh/sdk-vpp v0.0.0-20220507174519-44b1566df8bc/go.mod h1:bW+4c+U6NAtzuAHxIEYSA9pXJUEtyXgGcIsn6azjhl0=
+github.com/networkservicemesh/sdk-vpp v0.0.0-20220510013535-4aa3b2885240 h1:HVBS3iUF+unbIEkb/NK0n5K3T8rpgA8zVTCOKpfS/+w=
+github.com/networkservicemesh/sdk-vpp v0.0.0-20220510013535-4aa3b2885240/go.mod h1:u0ZF/x+n2e4acRMUkdw1hUeQ3oVJPsLqLWa/xcQEGRo=
 github.com/nxadm/tail v1.4.4/go.mod h1:kenIhsEOeOJmVchQTgglprH7qJGnHDVpk1VPCcaMI8A=
 github.com/nxadm/tail v1.4.8/go.mod h1:+ncqLTQzXmGhMZNUePPaPqPvBxHAIsmXswZKocGu+AU=
 github.com/olekukonko/tablewriter v0.0.1/go.mod h1:vsDQFd/mU46D+Z4whnwzcISnGGzXWMclvtLoiIKAKIo=
