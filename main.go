@@ -34,7 +34,6 @@ import (
 	"github.com/networkservicemesh/sdk/pkg/networkservice/common/clienturl"
 	"github.com/networkservicemesh/sdk/pkg/networkservice/common/connect"
 	"github.com/networkservicemesh/sdk/pkg/networkservice/common/mechanisms/recvfd"
-	"github.com/networkservicemesh/sdk/pkg/networkservice/common/replacelabels"
 	"github.com/networkservicemesh/sdk/pkg/tools/opentelemetry"
 	"github.com/networkservicemesh/sdk/pkg/tools/token"
 
@@ -64,6 +63,7 @@ import (
 	"github.com/networkservicemesh/sdk/pkg/networkservice/common/mechanisms"
 	"github.com/networkservicemesh/sdk/pkg/networkservice/common/mechanisms/sendfd"
 	"github.com/networkservicemesh/sdk/pkg/networkservice/common/mechanismtranslation"
+	"github.com/networkservicemesh/sdk/pkg/networkservice/common/passthrough"
 	"github.com/networkservicemesh/sdk/pkg/networkservice/core/chain"
 	"github.com/networkservicemesh/sdk/pkg/networkservice/utils/metadata"
 	registryclient "github.com/networkservicemesh/sdk/pkg/registry/chains/client"
@@ -231,7 +231,7 @@ func main() {
 					client.WithAdditionalFunctionality(
 						metadata.NewClient(),
 						mechanismtranslation.NewClient(),
-						replacelabels.NewClient(config.Labels),
+						passthrough.NewClient(config.Labels),
 						up.NewClient(ctx, vppConn),
 						xconnect.NewClient(vppConn),
 						memif.NewClient(vppConn),

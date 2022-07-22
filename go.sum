@@ -134,8 +134,8 @@ github.com/mikioh/ipaddr v0.0.0-20190404000644-d465c8ab6721/go.mod h1:Ickgr2WtCL
 github.com/mna/pigeon v0.0.0-20180808201053-bb0192cfc2ae/go.mod h1:Iym28+kJVnC1hfQvv5MUtI6AiFFzvQjHcvI4RFTG/04=
 github.com/networkservicemesh/api v1.4.1-0.20220711153918-a59689088578 h1:2MZD6SGFULqTgMKA8BFy7F+ldRErAyxsWht7oCwCVRM=
 github.com/networkservicemesh/api v1.4.1-0.20220711153918-a59689088578/go.mod h1:hOF2844BSstH1311oDMDgqqXS+kdc77htZNPRKl9mf8=
-github.com/networkservicemesh/sdk v1.4.0 h1:ipVjmmjWYhnYvpo4N78JEOg7tjLB+DhYyyKbsJf5wPg=
-github.com/networkservicemesh/sdk v1.4.0/go.mod h1:7cS1AlEYjHHUP60XvWBEv0tmVnIXaxMFgounaZgDmQk=
+github.com/networkservicemesh/sdk v0.5.1-0.20220721233846-6533a29f28c5 h1:72kZBi0Rh73YXCONtdsU0phchEFvEV5Djz+w71dLgZs=
+github.com/networkservicemesh/sdk v0.5.1-0.20220721233846-6533a29f28c5/go.mod h1:aT31j34psbMwTmyxgKZweiuYv783A1levN9nSKUVVp0=
 github.com/networkservicemesh/sdk-kernel v0.0.0-20220721234300-633fb249123b h1:fHTFKV4TBsPfhIHdK9eMW2GKNx9DwRXrnzIXRo4iC60=
 github.com/networkservicemesh/sdk-kernel v0.0.0-20220721234300-633fb249123b/go.mod h1:bx5RV7b/Ckv/4rmNN8Z4bCSd2qqc2i6d4sfWdwxxXcE=
 github.com/networkservicemesh/sdk-vpp v0.0.0-20220721234741-907f8637813a h1:8/5+3YhCfTgHNBYw186zS/RTkiNfWWFGCql1wDMk5yo=

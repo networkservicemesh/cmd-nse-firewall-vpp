@@ -24,7 +24,7 @@ import (
 	_ "github.com/networkservicemesh/sdk/pkg/networkservice/common/mechanisms/recvfd"
 	_ "github.com/networkservicemesh/sdk/pkg/networkservice/common/mechanisms/sendfd"
 	_ "github.com/networkservicemesh/sdk/pkg/networkservice/common/mechanismtranslation"
-	_ "github.com/networkservicemesh/sdk/pkg/networkservice/common/replacelabels"
+	_ "github.com/networkservicemesh/sdk/pkg/networkservice/common/passthrough"
 	_ "github.com/networkservicemesh/sdk/pkg/networkservice/core/chain"
 	_ "github.com/networkservicemesh/sdk/pkg/networkservice/utils/metadata"
 	_ "github.com/networkservicemesh/sdk/pkg/registry/chains/client"
