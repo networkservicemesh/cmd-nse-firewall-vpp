@@ -8,9 +8,9 @@ require (
 	github.com/edwarnicke/grpcfd v1.1.2
 	github.com/edwarnicke/vpphelper v0.0.0-20210512223648-f914b171f679
 	github.com/kelseyhightower/envconfig v1.4.0
-	github.com/networkservicemesh/api v1.6.2-0.20221108105251-f71f283feaa5
-	github.com/networkservicemesh/sdk v0.5.1-0.20221121202637-1d79bf8c68cd
-	github.com/networkservicemesh/sdk-vpp v0.0.0-20221121204531-fa429122885a
+	github.com/networkservicemesh/api v1.6.2-0.20221123101008-30ff0ca88ee8
+	github.com/networkservicemesh/sdk v0.5.1-0.20221123121638-14f2490dae28
+	github.com/networkservicemesh/sdk-vpp v0.0.0-20221123122723-a710c30d1852
 	github.com/pkg/errors v0.9.1
 	github.com/sirupsen/logrus v1.9.0
 	github.com/spiffe/go-spiffe/v2 v2.0.0
@@ -39,7 +39,7 @@ require (
 	github.com/hashicorp/errwrap v1.1.0 // indirect
 	github.com/hashicorp/go-multierror v1.1.1 // indirect
 	github.com/lunixbochs/struc v0.0.0-20200521075829-a4cb8d33dbbe // indirect
-	github.com/networkservicemesh/sdk-kernel v0.0.0-20221121203710-833d80721775 // indirect
+	github.com/networkservicemesh/sdk-kernel v0.0.0-20221123122230-aa5742746402 // indirect
 	github.com/open-policy-agent/opa v0.44.0 // indirect
 	github.com/rcrowley/go-metrics v0.0.0-20201227073835-cf1acfcdf475 // indirect
 	github.com/tchap/go-patricia/v2 v2.3.1 // indirect
