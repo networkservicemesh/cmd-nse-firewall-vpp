@@ -235,7 +235,7 @@ func main() {
 						passthrough.NewClient(config.Labels),
 						up.NewClient(ctx, vppConn),
 						xconnect.NewClient(vppConn),
-						memif.NewClient(vppConn),
+						memif.NewClient(ctx, vppConn),
 						sendfd.NewClient(),
 						recvfd.NewClient(),
 					)),
