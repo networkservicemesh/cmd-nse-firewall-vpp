@@ -80,16 +80,17 @@ import (
 
 // Config holds configuration parameters from environment variables
 type Config struct {
-	Name                  string              `default:"firewall-server" desc:"Name of Firewall Server"`
-	ListenOn              string              `default:"listen.on.sock" desc:"listen on socket" split_words:"true"`
-	ConnectTo             url.URL             `default:"unix:///var/lib/networkservicemesh/nsm.io.sock" desc:"url to connect to" split_words:"true"`
-	MaxTokenLifetime      time.Duration       `default:"10m" desc:"maximum lifetime of tokens" split_words:"true"`
-	ServiceName           string              `default:"" desc:"Name of providing service" split_words:"true"`
-	Labels                map[string]string   `default:"" desc:"Endpoint labels"`
-	ACLConfigPath         string              `default:"/etc/vppagent-firewall/config.yaml" desc:"Path to ACL config file" split_words:"true"`
-	ACLConfig             []acl_types.ACLRule `default:"" desc:"configured acl rules"`
-	LogLevel              string              `default:"INFO" desc:"Log level" split_words:"true"`
-	OpenTelemetryEndpoint string              `default:"otel-collector.observability.svc.cluster.local:4317" desc:"OpenTelemetry Collector Endpoint"`
+	Name                   string              `default:"firewall-server" desc:"Name of Firewall Server"`
+	ListenOn               string              `default:"listen.on.sock" desc:"listen on socket" split_words:"true"`
+	ConnectTo              url.URL             `default:"unix:///var/lib/networkservicemesh/nsm.io.sock" desc:"url to connect to" split_words:"true"`
+	MaxTokenLifetime       time.Duration       `default:"10m" desc:"maximum lifetime of tokens" split_words:"true"`
+	RegistryClientPolicies []string            `default:"etc/nsm/opa/common/.*.rego,etc/nsm/opa/registry/.*.rego,etc/nsm/opa/client/.*.rego" desc:"paths to files and directories that contain registry client policies" split_words:"true"`
+	ServiceName            string              `default:"" desc:"Name of providing service" split_words:"true"`
+	Labels                 map[string]string   `default:"" desc:"Endpoint labels"`
+	ACLConfigPath          string              `default:"/etc/vppagent-firewall/config.yaml" desc:"Path to ACL config file" split_words:"true"`
+	ACLConfig              []acl_types.ACLRule `default:"" desc:"configured acl rules"`
+	LogLevel               string              `default:"INFO" desc:"Log level" split_words:"true"`
+	OpenTelemetryEndpoint  string              `default:"otel-collector.observability.svc.cluster.local:4317" desc:"OpenTelemetry Collector Endpoint"`
 }
 
 // Process prints and processes env to config
@@ -235,7 +236,7 @@ func main() {
 						passthrough.NewClient(config.Labels),
 						up.NewClient(ctx, vppConn),
 						xconnect.NewClient(vppConn),
-						memif.NewClient(ctx, vppConn),
+						memif.NewClient(vppConn),
 						sendfd.NewClient(),
 						recvfd.NewClient(),
 					)),
@@ -279,7 +280,9 @@ func main() {
 			clientinfo.NewNetworkServiceEndpointRegistryClient(),
 			registrysendfd.NewNetworkServiceEndpointRegistryClient(),
 		),
-		registryclient.WithAuthorizeNSERegistryClient(registryauthorize.NewNetworkServiceEndpointRegistryClient()),
+		registryclient.WithAuthorizeNSERegistryClient(registryauthorize.NewNetworkServiceEndpointRegistryClient(
+			registryauthorize.WithPolicies(config.RegistryClientPolicies...),
+		)),
 	)
 	nse, err := nseRegistryClient.Register(ctx, &registryapi.NetworkServiceEndpoint{
 		Name:                config.Name,
