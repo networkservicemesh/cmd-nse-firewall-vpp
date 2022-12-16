@@ -278,11 +278,9 @@ func main() {
 		registryclient.WithDialOptions(clientOptions...),
 		registryclient.WithNSEAdditionalFunctionality(
 			clientinfo.NewNetworkServiceEndpointRegistryClient(),
-			registrysendfd.NewNetworkServiceEndpointRegistryClient(),
-		),
+			registrysendfd.NewNetworkServiceEndpointRegistryClient()),
 		registryclient.WithAuthorizeNSERegistryClient(registryauthorize.NewNetworkServiceEndpointRegistryClient(
-			registryauthorize.WithPolicies(config.RegistryClientPolicies...),
-		)),
+			registryauthorize.WithPolicies(config.RegistryClientPolicies...))),
 	)
 	nse, err := nseRegistryClient.Register(ctx, &registryapi.NetworkServiceEndpoint{
 		Name:                config.Name,
