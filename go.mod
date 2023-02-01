@@ -4,13 +4,13 @@ go 1.18
 
 require (
 	github.com/antonfisher/nested-logrus-formatter v1.3.1
-	github.com/edwarnicke/govpp v0.0.0-20221205183833-306afd06cce5
+	github.com/edwarnicke/govpp v0.0.0-20230130211138-14ef5d20b1d0
 	github.com/edwarnicke/grpcfd v1.1.2
 	github.com/edwarnicke/vpphelper v0.0.0-20210512223648-f914b171f679
 	github.com/kelseyhightower/envconfig v1.4.0
 	github.com/networkservicemesh/api v1.7.2-0.20230123083145-4a6c3ec589e1
 	github.com/networkservicemesh/sdk v0.5.1-0.20230127103858-f45a84eaed48
-	github.com/networkservicemesh/sdk-vpp v0.0.0-20230127105639-2c513db6cc34
+	github.com/networkservicemesh/sdk-vpp v0.0.0-20230201092206-c24a3cd9d3e0
 	github.com/pkg/errors v0.9.1
 	github.com/sirupsen/logrus v1.9.0
 	github.com/spiffe/go-spiffe/v2 v2.0.0

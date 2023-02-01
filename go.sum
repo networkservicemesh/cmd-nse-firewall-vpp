@@ -80,8 +80,8 @@ github.com/dgryski/trifles v0.0.0-20200323201526-dd97f9abfb48/go.mod h1:if7Fbed8
 github.com/dustin/go-humanize v1.0.0 h1:VSnTsYCnlFHaM2/igO1h6X3HA71jcobQuxemgkq4zYo=
 github.com/edwarnicke/exechelper v1.0.2 h1:dD49Ui2U0FBFxxhalnKw6vLS0P0TkgnXBRvKL/xmC5w=
 github.com/edwarnicke/exechelper v1.0.2/go.mod h1:/T271jtNX/ND4De6pa2aRy2+8sNtyCDB1A2pp4M+fUs=
-github.com/edwarnicke/govpp v0.0.0-20221205183833-306afd06cce5 h1:8EvgVD6lkOjoVQuKY3/iQV3ewu+uIqu8TZaAsvkJPIs=
-github.com/edwarnicke/govpp v0.0.0-20221205183833-306afd06cce5/go.mod h1:kHDnxA+SSNFeMEHz7xvhub1zvx4mOTRlWWRCay2n5NM=
+github.com/edwarnicke/govpp v0.0.0-20230130211138-14ef5d20b1d0 h1:3qXBk0lN7PhPrS/2TVJE30TZA/Ecd6LwkFW4rBxxb2w=
+github.com/edwarnicke/govpp v0.0.0-20230130211138-14ef5d20b1d0/go.mod h1:kHDnxA+SSNFeMEHz7xvhub1zvx4mOTRlWWRCay2n5NM=
 github.com/edwarnicke/grpcfd v1.1.2 h1:2b8kCABQ1+JjSKGDoHadqSW7whCeTXMqtyo6jmB5B8k=
 github.com/edwarnicke/grpcfd v1.1.2/go.mod h1:rHihB9YvNMixz8rS+ZbwosI2kj65VLkeyYAI2M+/cGA=
 github.com/edwarnicke/log v1.0.0 h1:T6uRNCmR99GTt/CpRr2Gz8eGW8fm0HMThDNGdNxPaGk=
@@ -226,8 +226,8 @@ github.com/networkservicemesh/sdk v0.5.1-0.20230127103858-f45a84eaed48 h1:BD9XnF
 github.com/networkservicemesh/sdk v0.5.1-0.20230127103858-f45a84eaed48/go.mod h1:kKXpCya5Ps0JWUuguUjRB5l4i5vk29C381JEE67eDqs=
 github.com/networkservicemesh/sdk-kernel v0.0.0-20230127104748-0bcb73acd6e5 h1:1UVFWajXI1250HH1c/OiiC1OpqTg4SlWt9DvRmgrH7w=
 github.com/networkservicemesh/sdk-kernel v0.0.0-20230127104748-0bcb73acd6e5/go.mod h1:XjdXXadpB3unZmhNDEzxBFQgelaPGWacUYRUllZMr7g=
-github.com/networkservicemesh/sdk-vpp v0.0.0-20230127105639-2c513db6cc34 h1:YTCxsu7tyiSQiu/EfhhUwJPDvyqG2Tr0KjLymr3x5gc=
-github.com/networkservicemesh/sdk-vpp v0.0.0-20230127105639-2c513db6cc34/go.mod h1:Dijxz5qibeqhAVF0SmF0vMUWhaKqtCxuBxHlgEWnsxY=
+github.com/networkservicemesh/sdk-vpp v0.0.0-20230201092206-c24a3cd9d3e0 h1:WDKpm41gza1JOQTOD0K+CtFBrIadebl959gwhOqnqZk=
+github.com/networkservicemesh/sdk-vpp v0.0.0-20230201092206-c24a3cd9d3e0/go.mod h1:EDZgGUSH3IeFZ61JbTsGwgfDQu2aTZX9i89G3Wa/twQ=
 github.com/onsi/ginkgo v1.8.0/go.mod h1:lLunBs/Ym6LB5Z9jYTR76FiuTmxDTDusOGeTQH+WWjE=
 github.com/onsi/gomega v1.1.0 h1:e3YP4dN/HYPpGh29X1ZkcxcEICsOls9huyVCRBaxjq8=
 github.com/onsi/gomega v1.1.0/go.mod h1:C1qb7wdrVGGVU+Z6iS04AVkA3Q65CEZX59MT0QO5uiA=
