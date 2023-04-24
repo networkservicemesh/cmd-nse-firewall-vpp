@@ -168,7 +168,7 @@ github.com/google/go-cmp v0.5.0/go.mod h1:v8dTdLbMG2kIc/vJvl+f65V22dbkXbowE6jgT/
 github.com/google/go-cmp v0.5.1/go.mod h1:v8dTdLbMG2kIc/vJvl+f65V22dbkXbowE6jgT/gNBxE=
 github.com/google/go-cmp v0.5.5/go.mod h1:v8dTdLbMG2kIc/vJvl+f65V22dbkXbowE6jgT/gNBxE=
 github.com/google/go-cmp v0.5.6/go.mod h1:v8dTdLbMG2kIc/vJvl+f65V22dbkXbowE6jgT/gNBxE=
-github.com/google/go-cmp v0.5.8 h1:e6P7q2lk1O+qJJb4BtCQXlK8vWEO8V1ZeuEdJNOqZyg=
+github.com/google/go-cmp v0.5.9 h1:O2Tfq5qg4qc4AmwVlvv0oLiVAGB7enBSJ2x2DqQFi38=
 github.com/google/martian v2.1.0+incompatible/go.mod h1:9I4somxYTbIHy5NJKHRl3wXiIaQGbYVAs8BPL6v8lEs=
 github.com/google/martian/v3 v3.0.0/go.mod h1:y5Zk1BBys9G+gd6Jrk0W3cC1+ELVxBWuIGO+w/tUAp0=
 github.com/google/pprof v0.0.0-20181206194817-3ea8567a2e57/go.mod h1:zfwlbNMJ+OItoe0UupaVj+oy1omPYYDuagoSzA8v9mc=
@@ -228,8 +228,8 @@ github.com/networkservicemesh/sdk v0.5.1-0.20230418121941-777f572539ba h1:ctuQa7
 github.com/networkservicemesh/sdk v0.5.1-0.20230418121941-777f572539ba/go.mod h1:hmu0t7IxKa1v7Mj7Y3dQrcpRD0YtEyFE5vJorXRQT2A=
 github.com/networkservicemesh/sdk-kernel v0.0.0-20230418122259-7462e6c6b3db h1:ejlUfJl9qaZqCWaTVADYeVsaUdV/17aRy3ArL3gUqNg=
 github.com/networkservicemesh/sdk-kernel v0.0.0-20230418122259-7462e6c6b3db/go.mod h1:9t/3pZYrQ16FAH+aZ07JvrvHwdQ+hlvk/iA6tQ1j+k0=
-github.com/networkservicemesh/sdk-vpp v0.0.0-20230418122744-f9e335c326f0 h1:f+vbk1vZ7KVxR5Rng+zPH2CQANUdIW9R1vamjYEpITU=
-github.com/networkservicemesh/sdk-vpp v0.0.0-20230418122744-f9e335c326f0/go.mod h1:EDEAVrCCoIJxao8ZMPrSqcUz1H6wWg9Lh9GOdS6VSzw=
+github.com/networkservicemesh/sdk-vpp v0.0.0-20230424100833-ad21ef893f3d h1:YEHwx5HSyravCfT+YKQFihEBzm9pHgXVtk8GvpO308o=
+github.com/networkservicemesh/sdk-vpp v0.0.0-20230424100833-ad21ef893f3d/go.mod h1:RtJJq6jNajtccw5fVsc5ghvcxukQkYeYyGIFX/euPeY=
 github.com/onsi/ginkgo v1.8.0/go.mod h1:lLunBs/Ym6LB5Z9jYTR76FiuTmxDTDusOGeTQH+WWjE=
 github.com/onsi/gomega v1.1.0 h1:e3YP4dN/HYPpGh29X1ZkcxcEICsOls9huyVCRBaxjq8=
 github.com/onsi/gomega v1.1.0/go.mod h1:C1qb7wdrVGGVU+Z6iS04AVkA3Q65CEZX59MT0QO5uiA=
