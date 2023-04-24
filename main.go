@@ -87,7 +87,7 @@ type Config struct {
 	RegistryClientPolicies []string            `default:"etc/nsm/opa/common/.*.rego,etc/nsm/opa/registry/.*.rego,etc/nsm/opa/client/.*.rego" desc:"paths to files and directories that contain registry client policies" split_words:"true"`
 	ServiceName            string              `default:"" desc:"Name of providing service" split_words:"true"`
 	Labels                 map[string]string   `default:"" desc:"Endpoint labels"`
-	ACLConfigPath          string              `default:"/etc/vppagent-firewall/config.yaml" desc:"Path to ACL config file" split_words:"true"`
+	ACLConfigPath          string              `default:"/etc/firewall/config.yaml" desc:"Path to ACL config file" split_words:"true"`
 	ACLConfig              []acl_types.ACLRule `default:"" desc:"configured acl rules"`
 	LogLevel               string              `default:"INFO" desc:"Log level" split_words:"true"`
 	OpenTelemetryEndpoint  string              `default:"otel-collector.observability.svc.cluster.local:4317" desc:"OpenTelemetry Collector Endpoint"`
