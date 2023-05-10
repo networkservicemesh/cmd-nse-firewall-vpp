@@ -188,18 +188,13 @@ func main() {
 	// ********************************************************************************
 	log.FromContext(ctx).Infof("executing phase 3: create grpc client options")
 	// ********************************************************************************
-	clientOptions := append(
-		tracing.WithTracingDial(),
+	clientOptions := append(tracing.WithTracingDial(),
+		grpc.WithTransportCredentials(
+			grpcfd.TransportCredentials(credentials.NewTLS(tlsClientConfig))),
+		grpc.WithBlock(),
 		grpc.WithDefaultCallOptions(
 			grpc.WaitForReady(true),
 			grpc.PerRPCCredentials(token.NewPerRPCCredentials(spiffejwt.TokenGeneratorFunc(source, config.MaxTokenLifetime))),
-		),
-		grpc.WithTransportCredentials(
-			grpcfd.TransportCredentials(
-				credentials.NewTLS(
-					tlsClientConfig,
-				),
-			),
 		),
 		grpcfd.WithChainStreamInterceptor(),
 		grpcfd.WithChainUnaryInterceptor(),
