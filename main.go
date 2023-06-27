@@ -24,7 +24,6 @@ package main
 import (
 	"context"
 	"crypto/tls"
-	"io/ioutil"
 	"net/url"
 	"os"
 	"os/signal"
@@ -40,7 +39,6 @@ import (
 	"github.com/networkservicemesh/sdk/pkg/tools/token"
 
 	nested "github.com/antonfisher/nested-logrus-formatter"
-	"github.com/edwarnicke/govpp/binapi/acl_types"
 	"github.com/edwarnicke/grpcfd"
 	"github.com/edwarnicke/vpphelper"
 	"github.com/kelseyhightower/envconfig"
@@ -51,6 +49,8 @@ import (
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials"
 	"gopkg.in/yaml.v2"
+
+	"github.com/networkservicemesh/govpp/binapi/acl_types"
 
 	"github.com/networkservicemesh/api/pkg/api/networkservice"
 	registryapi "github.com/networkservicemesh/api/pkg/api/registry"
@@ -259,7 +259,7 @@ func main() {
 	)...)
 	firewallEndpoint.Register(server)
 
-	tmpDir, err := ioutil.TempDir("", config.Name)
+	tmpDir, err := os.MkdirTemp("", config.Name)
 	if err != nil {
 		logrus.Fatalf("error creating tmpDir %+v", err)
 	}
@@ -338,7 +338,7 @@ func notifyContext() (context.Context, context.CancelFunc) {
 func (c *Config) retrieveACLRules(ctx context.Context) {
 	logger := log.FromContext(ctx).WithField("acl", "config")
 
-	raw, err := ioutil.ReadFile(filepath.Clean(c.ACLConfigPath))
+	raw, err := os.ReadFile(filepath.Clean(c.ACLConfigPath))
 	if err != nil {
 		logger.Errorf("Error reading config file: %v", err)
 		return
