@@ -91,8 +91,6 @@ github.com/edwarnicke/log v1.0.0/go.mod h1:eWsQQlQ0IU5wHlJvyXFH3dS8s2g9GzN7JnXod
 github.com/edwarnicke/serialize v0.0.0-20200705214914-ebc43080eecf/go.mod h1:XvbCO/QGsl3X8RzjBMoRpkm54FIAZH5ChK2j+aox7pw=
 github.com/edwarnicke/serialize v1.0.7 h1:geX8vmyu8Ij2S5fFIXjy9gBDkKxXnrMIzMoDvV0Ddac=
 github.com/edwarnicke/serialize v1.0.7/go.mod h1:y79KgU2P7ALH/4j37uTSIdNavHFNttqN7pzO6Y8B2aw=
-github.com/edwarnicke/vpphelper v0.2.0 h1:Ra47QFtmR/Ji8czoRBwD/pboLfK1GiQEI1SSrsaYupE=
-github.com/edwarnicke/vpphelper v0.2.0/go.mod h1:2KXgJqOUUCh9S4Zs2jAycQLqAcRGge3q+GXV2rN55ZQ=
 github.com/envoyproxy/go-control-plane v0.9.0/go.mod h1:YTl/9mNaCwkRvm6d1a2C3ymFceY/DCBVvsKhRF0iEA4=
 github.com/envoyproxy/go-control-plane v0.9.1-0.20191026205805-5f8ba28d4473/go.mod h1:YTl/9mNaCwkRvm6d1a2C3ymFceY/DCBVvsKhRF0iEA4=
 github.com/envoyproxy/go-control-plane v0.9.4/go.mod h1:6rpuAdCZL397s3pYoYcLgu1mIlRU8Am5FuJP05cCM98=
@@ -230,6 +228,8 @@ github.com/networkservicemesh/sdk-kernel v0.0.0-20230720103750-61d67ebc52f8 h1:M
 github.com/networkservicemesh/sdk-kernel v0.0.0-20230720103750-61d67ebc52f8/go.mod h1:6YxgX7lDB4r2YSo/w5hLoaXXvCoPjyCI9xccZu8YM7o=
 github.com/networkservicemesh/sdk-vpp v0.0.0-20230720104235-e1184e20bfcf h1:fMNNo0ksJnOx6pmZyTPAZnmff4KoarpaKKR1/S8Lt/k=
 github.com/networkservicemesh/sdk-vpp v0.0.0-20230720104235-e1184e20bfcf/go.mod h1:e6329ztR5EZm+bqRcMGdksUnaZszO1tt8c6XHxbWJg0=
+github.com/networkservicemesh/vpphelper v0.0.0-20230721124411-38a0b7426972 h1:Qu4LsLjAM/qVkVvIw1pvNHLkOnN4/6n79LHM2FVl/xw=
+github.com/networkservicemesh/vpphelper v0.0.0-20230721124411-38a0b7426972/go.mod h1:sRkqSd8psiUrUvKjCiDHvNcOXzOsxJkAxU5UkKmQy4M=
 github.com/onsi/ginkgo v1.8.0/go.mod h1:lLunBs/Ym6LB5Z9jYTR76FiuTmxDTDusOGeTQH+WWjE=
 github.com/onsi/gomega v1.1.0 h1:e3YP4dN/HYPpGh29X1ZkcxcEICsOls9huyVCRBaxjq8=
 github.com/onsi/gomega v1.1.0/go.mod h1:C1qb7wdrVGGVU+Z6iS04AVkA3Q65CEZX59MT0QO5uiA=

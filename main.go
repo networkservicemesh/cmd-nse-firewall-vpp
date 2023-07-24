@@ -40,7 +40,6 @@ import (
 
 	nested "github.com/antonfisher/nested-logrus-formatter"
 	"github.com/edwarnicke/grpcfd"
-	"github.com/edwarnicke/vpphelper"
 	"github.com/kelseyhightower/envconfig"
 	"github.com/pkg/errors"
 	"github.com/sirupsen/logrus"
@@ -49,6 +48,8 @@ import (
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials"
 	"gopkg.in/yaml.v2"
+
+	"github.com/networkservicemesh/vpphelper"
 
 	"github.com/networkservicemesh/govpp/binapi/acl_types"
 
