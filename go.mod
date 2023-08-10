@@ -9,7 +9,7 @@ require (
 	github.com/networkservicemesh/api v1.9.1-0.20230627143611-9785eacf9687
 	github.com/networkservicemesh/govpp v0.0.0-20230630105900-092690d52a97
 	github.com/networkservicemesh/sdk v0.5.1-0.20230801094133-aeae47c771a6
-	github.com/networkservicemesh/sdk-vpp v0.0.0-20230801094917-b6009699dac5
+	github.com/networkservicemesh/sdk-vpp v0.0.0-20230810003715-0633e49fc885
 	github.com/networkservicemesh/vpphelper v0.0.0-20230721124411-38a0b7426972
 	github.com/pkg/errors v0.9.1
 	github.com/sirupsen/logrus v1.9.0
