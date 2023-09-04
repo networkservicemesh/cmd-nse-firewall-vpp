@@ -10,7 +10,7 @@ require (
 	github.com/networkservicemesh/govpp v0.0.0-20230901132304-614d6d6fb8a6
 	github.com/networkservicemesh/sdk v0.5.1-0.20230828163119-f96fdf637a63
 	github.com/networkservicemesh/sdk-vpp v0.0.0-20230904082310-8a9c97efea32
-	github.com/networkservicemesh/vpphelper v0.0.0-20230721124411-38a0b7426972
+	github.com/networkservicemesh/vpphelper v0.0.0-20230901145133-a14aecebd1cb
 	github.com/pkg/errors v0.9.1
 	github.com/sirupsen/logrus v1.9.0
 	github.com/spiffe/go-spiffe/v2 v2.0.0
@@ -19,7 +19,6 @@ require (
 )
 
 require (
-	git.fd.io/govpp.git v0.3.6-0.20210927044411-385ccc0d8ba9 // indirect
 	github.com/OneOfOne/xxhash v1.2.8 // indirect
 	github.com/agnivade/levenshtein v1.1.1 // indirect
 	github.com/cenkalti/backoff/v4 v4.2.1 // indirect
