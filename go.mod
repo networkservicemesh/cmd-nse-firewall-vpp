@@ -6,10 +6,10 @@ require (
 	github.com/antonfisher/nested-logrus-formatter v1.3.1
 	github.com/edwarnicke/grpcfd v1.1.2
 	github.com/kelseyhightower/envconfig v1.4.0
-	github.com/networkservicemesh/api v1.11.1-0.20231031152153-730abd666985
+	github.com/networkservicemesh/api v1.11.2-rc.3
 	github.com/networkservicemesh/govpp v0.0.0-20231108193829-2484aa7cd5d9
-	github.com/networkservicemesh/sdk v0.5.1-0.20231212103212-1979cc1d932c
-	github.com/networkservicemesh/sdk-vpp v0.0.0-20231212103840-0ee65c8c332c
+	github.com/networkservicemesh/sdk v1.11.2-rc.3
+	github.com/networkservicemesh/sdk-vpp v1.11.2-rc.3
 	github.com/networkservicemesh/vpphelper v0.0.0-20230901145133-a14aecebd1cb
 	github.com/pkg/errors v0.9.1
 	github.com/sirupsen/logrus v1.9.0
@@ -43,7 +43,7 @@ require (
 	github.com/hashicorp/go-multierror v1.1.1 // indirect
 	github.com/lunixbochs/struc v0.0.0-20200521075829-a4cb8d33dbbe // indirect
 	github.com/matttproud/golang_protobuf_extensions v1.0.4 // indirect
-	github.com/networkservicemesh/sdk-kernel v0.0.0-20231212103506-9e8fd0d59366 // indirect
+	github.com/networkservicemesh/sdk-kernel v1.11.2-rc.3 // indirect
 	github.com/open-policy-agent/opa v0.44.0 // indirect
 	github.com/prometheus/client_golang v1.17.0 // indirect
 	github.com/prometheus/client_model v0.5.0 // indirect
