@@ -148,8 +148,8 @@ github.com/mitchellh/go-ps v1.0.0/go.mod h1:J4lOc8z8yJs6vUwklHw2XEIiT4z4C40KtWVN
 github.com/moby/term v0.5.0/go.mod h1:8FzsFHVUBGZdbDsJw/ot+X+d5HLUbvklYLJ9uGfcI3Y=
 github.com/networkservicemesh/api v1.11.2 h1:91KPORtfbxuXf67eNZiP2LsNfbDFUa+QckWhSiMDhB8=
 github.com/networkservicemesh/api v1.11.2/go.mod h1:E2yBac48+mMkMh6ODnsNyah4EE6rI08SMR9n+86Emxs=
-github.com/networkservicemesh/govpp v0.0.0-20231212083525-5ecb386aa377 h1:jL/ALtHGRwHbcFsKBcbvaVtdHwP6GtpYJOr+vknn/9c=
-github.com/networkservicemesh/govpp v0.0.0-20231212083525-5ecb386aa377/go.mod h1:qsoLtPgOdSCTBUFOhS3jAdZkk1u4URf55akKOHn4f34=
+github.com/networkservicemesh/govpp v0.0.0-20231216233431-9c82b2963820 h1:Ok6qAWAfhEi3iIgWbd4h1bUH/gpdyI/vZP5faVvnP5E=
+github.com/networkservicemesh/govpp v0.0.0-20231216233431-9c82b2963820/go.mod h1:qsoLtPgOdSCTBUFOhS3jAdZkk1u4URf55akKOHn4f34=
 github.com/networkservicemesh/sdk v1.11.2 h1:HHhA6vjbyVEDffcx2vUuc1/kHqBuTmTJrxbadul9mak=
 github.com/networkservicemesh/sdk v1.11.2/go.mod h1:9B6CU54HGgkBQ8d1rQH18HzAMr7kGWNMoYdVARYAkGQ=
 github.com/networkservicemesh/sdk-kernel v1.11.2 h1:txgWevJoaBInZC5cYGZVSpltoBrd2wswsidi7h6QDAM=
