@@ -1,4 +1,4 @@
-ARG VPP_VERSION=v23.10-rc0-167-g3f1d48f48
+ARG VPP_VERSION=v23.10-rc0-168-ga7df795f1
 FROM ghcr.io/networkservicemesh/govpp/vpp:${VPP_VERSION} as go
 COPY --from=golang:1.20.11 /usr/local/go/ /go
 ENV PATH ${PATH}:/go/bin
