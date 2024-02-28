@@ -7,7 +7,7 @@ require (
 	github.com/edwarnicke/grpcfd v1.1.2
 	github.com/kelseyhightower/envconfig v1.4.0
 	github.com/networkservicemesh/api v1.11.2
-	github.com/networkservicemesh/govpp v0.0.0-20240130152300-43babf54855b
+	github.com/networkservicemesh/govpp v0.0.0-20240228164121-2d825c8bae53
 	github.com/networkservicemesh/sdk v1.11.2
 	github.com/networkservicemesh/sdk-vpp v0.0.0-20240220094218-e132a822aad6
 	github.com/networkservicemesh/vpphelper v0.0.0-20240115135903-e2b961f768b6
