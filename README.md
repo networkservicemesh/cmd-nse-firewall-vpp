@@ -16,6 +16,23 @@ You can build the docker container by running:
 docker build .
 ```
 
+# Usage
+
+## Environment config
+
+* `NSM_NAME`                     - Name of Firewall Server (default: "firewall-server")
+* `NSM_LISTEN_ON`                - listen on socket (default: "listen.on.sock")
+* `NSM_CONNECT_TO`               - url to connect to (default: "unix:///var/lib/networkservicemesh/nsm.io.sock")
+* `NSM_MAX_TOKEN_LIFETIME`       - maximum lifetime of tokens (default: "10m")
+* `NSM_REGISTRY_CLIENT_POLICIES` - paths to files and directories that contain registry client policies (default: "etc/nsm/opa/common/.*.rego,etc/nsm/opa/registry/.*.rego,etc/nsm/opa/client/.*.rego")
+* `NSM_SERVICE_NAME`             - Name of providing service
+* `NSM_LABELS`                   - Endpoint labels
+* `NSM_ACL_CONFIG_PATH`          - Path to ACL config file (default: "/etc/firewall/config.yaml")
+* `NSM_ACL_CONFIG`               - configured acl rules
+* `NSM_LOG_LEVEL`                - Log level (default: "INFO")
+* `NSM_OPEN_TELEMETRY_ENDPOINT`  - OpenTelemetry Collector Endpoint (default: "otel-collector.observability.svc.cluster.local:4317")
+* `NSM_METRICS_EXPORT_INTERVAL`  - interval between mertics exports (default: "10s")
+
 # Testing
 
 ## Testing Docker container

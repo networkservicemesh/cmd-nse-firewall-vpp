@@ -91,9 +91,9 @@ type Config struct {
 	ServiceName            string              `default:"" desc:"Name of providing service" split_words:"true"`
 	Labels                 map[string]string   `default:"" desc:"Endpoint labels"`
 	ACLConfigPath          string              `default:"/etc/firewall/config.yaml" desc:"Path to ACL config file" split_words:"true"`
-	ACLConfig              []acl_types.ACLRule `default:"" desc:"configured acl rules"`
+	ACLConfig              []acl_types.ACLRule `default:"" desc:"configured acl rules" split_words:"true"`
 	LogLevel               string              `default:"INFO" desc:"Log level" split_words:"true"`
-	OpenTelemetryEndpoint  string              `default:"otel-collector.observability.svc.cluster.local:4317" desc:"OpenTelemetry Collector Endpoint"`
+	OpenTelemetryEndpoint  string              `default:"otel-collector.observability.svc.cluster.local:4317" desc:"OpenTelemetry Collector Endpoint" split_words:"true"`
 	MetricsExportInterval  time.Duration       `default:"10s" desc:"interval between mertics exports" split_words:"true"`
 }
 
