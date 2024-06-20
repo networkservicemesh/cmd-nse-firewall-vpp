@@ -38,6 +38,7 @@ import (
 	"github.com/networkservicemesh/sdk/pkg/networkservice/common/connect"
 	"github.com/networkservicemesh/sdk/pkg/networkservice/common/mechanisms/recvfd"
 	"github.com/networkservicemesh/sdk/pkg/tools/opentelemetry"
+	"github.com/networkservicemesh/sdk/pkg/tools/spire"
 	"github.com/networkservicemesh/sdk/pkg/tools/token"
 
 	nested "github.com/antonfisher/nested-logrus-formatter"
@@ -79,6 +80,7 @@ import (
 	"github.com/networkservicemesh/sdk/pkg/tools/grpcutils"
 	"github.com/networkservicemesh/sdk/pkg/tools/log"
 	"github.com/networkservicemesh/sdk/pkg/tools/log/logruslogger"
+	authmonitor "github.com/networkservicemesh/sdk/pkg/tools/monitorconnection/authorize"
 	"github.com/networkservicemesh/sdk/pkg/tools/spiffejwt"
 	"github.com/networkservicemesh/sdk/pkg/tools/tracing"
 )
@@ -146,12 +148,7 @@ func main() {
 	if err := config.Process(); err != nil {
 		logrus.Fatal(err.Error())
 	}
-	l, err := logrus.ParseLevel(config.LogLevel)
-	if err != nil {
-		logrus.Fatalf("invalid log level %s", config.LogLevel)
-	}
-	logrus.SetLevel(l)
-
+	setLogrusLevel(config)
 	config.retrieveACLRules(ctx)
 
 	log.FromContext(ctx).Infof("Config: %#v", config)
@@ -159,6 +156,7 @@ func main() {
 	// ********************************************************************************
 	// Configure Open Telemetry
 	// ********************************************************************************
+	var err error
 	if opentelemetry.IsEnabled() {
 		collectorAddress := config.OpenTelemetryEndpoint
 		spanExporter := opentelemetry.InitSpanExporter(ctx, collectorAddress)
@@ -174,6 +172,7 @@ func main() {
 	// ********************************************************************************
 	log.FromContext(ctx).Infof("executing phase 2: retrieving svid, check spire agent logs if this is the last line you see")
 	// ********************************************************************************
+
 	source, err := workloadapi.NewX509Source(ctx)
 	if err != nil {
 		logrus.Fatalf("error getting x509 source: %+v", err)
@@ -214,12 +213,13 @@ func main() {
 	// ********************************************************************************
 	vppConn, vppErrCh := vpphelper.StartAndDialContext(ctx)
 	exitOnErr(ctx, cancel, vppErrCh)
-
+	spiffeIDConnMap := spire.SpiffeIDConnectionMap{}
 	firewallEndpoint := new(struct{ endpoint.Endpoint })
 	firewallEndpoint.Endpoint = endpoint.NewServer(ctx,
 		spiffejwt.TokenGeneratorFunc(source, config.MaxTokenLifetime),
 		endpoint.WithName(config.Name),
-		endpoint.WithAuthorizeServer(authorize.NewServer()),
+		endpoint.WithAuthorizeServer(authorize.NewServer(authorize.WithSpiffeIDConnectionMap(&spiffeIDConnMap))),
+		endpoint.WithAuthorizeMonitorConnectionServer(authmonitor.NewMonitorConnectionServer(authmonitor.WithSpiffeIDConnectionMap(&spiffeIDConnMap))),
 		endpoint.WithAdditionalFunctionality(
 			recvfd.NewServer(),
 			sendfd.NewServer(),
@@ -362,4 +362,12 @@ func (c *Config) retrieveACLRules(ctx context.Context) {
 	}
 
 	logger.Infof("Result rules:%v", c.ACLConfig)
+}
+
+func setLogrusLevel(config *Config) {
+	l, err := logrus.ParseLevel(config.LogLevel)
+	if err != nil {
+		logrus.Fatalf("invalid log level %s", config.LogLevel)
+	}
+	logrus.SetLevel(l)
 }
