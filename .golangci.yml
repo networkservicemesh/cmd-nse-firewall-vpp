@@ -1,7 +1,7 @@
 ---
 run:
   # concurrency: 6
-  go: "1.20"
+  go: "1.23"
   timeout: 2m
   issues-exit-code: 1
   tests: true
@@ -11,13 +11,14 @@ linters-settings:
     values:
       regexp:
         company: .*
-        copyright-holder: Copyright \(c\) ({{year-range}}) {{company}}\n\n
+        copyright-holder: Copyright \(c\) ({{mod-year-range}}) {{company}}\n\n
         copyright-holders: ({{copyright-holder}})+
   errcheck:
     check-type-assertions: false
     check-blank: false
   govet:
-    check-shadowing: true
+    enable:
+      - shadow
     settings:
       printf:
         funcs:
@@ -25,19 +26,15 @@ linters-settings:
           - (github.com/sirupsen/logrus.FieldLogger).Warnf
           - (github.com/sirupsen/logrus.FieldLogger).Errorf
           - (github.com/sirupsen/logrus.FieldLogger).Fatalf
-  revive:
-    min-confidence: 0.8
   goimports:
     local-prefixes: github.com/networkservicemesh
   gocyclo:
     min-complexity: 15
-  maligned:
-    suggest-new: true
   dupl:
     threshold: 150
   funlen:
-    Lines: 220
-    Statements: 80
+    lines: 220
+    statements: 80
   goconst:
     min-len: 2
     min-occurrences: 2
@@ -128,12 +125,10 @@ linters:
   enable:
     - goheader
     - bodyclose
-    - deadcode
     - depguard
     - dogsled
     - dupl
     - errcheck
-    - exportloopref
     - funlen
     - gochecknoinits
     - goconst
@@ -149,13 +144,13 @@ linters:
     - nakedret
     - revive
     - staticcheck
-    - structcheck
     - stylecheck
     - typecheck
     - unconvert
     - unparam
-    - varcheck
     - whitespace
+    - unused
+    - copyloopvar
 issues:
   exclude-use-default: false
   max-issues-per-linter: 0
