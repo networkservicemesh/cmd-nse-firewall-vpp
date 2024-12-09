@@ -10,7 +10,7 @@ require (
 	github.com/networkservicemesh/govpp v0.0.0-20240328101142-8a444680fbba
 	github.com/networkservicemesh/sdk v0.5.1-0.20241204094001-28a23286f23d
 	github.com/networkservicemesh/sdk-vpp v0.0.0-20241204094703-3c4807ad8088
-	github.com/networkservicemesh/vpphelper v0.0.0-20241206101838-6f75d67089d5
+	github.com/networkservicemesh/vpphelper v0.0.0-20241209033247-bcb5c25a9f29
 	github.com/pkg/errors v0.9.1
 	github.com/sirupsen/logrus v1.9.3
 	github.com/spiffe/go-spiffe/v2 v2.1.7
