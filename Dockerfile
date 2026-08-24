@@ -1,6 +1,6 @@
 ARG VPP_VERSION=v24.10.0-4-ga9d527a67
 FROM ghcr.io/networkservicemesh/govpp/vpp:${VPP_VERSION} as go
-COPY --from=golang:1.23.1 /usr/local/go/ /go
+COPY --from=golang:1.25.0 /usr/local/go/ /go
 ENV PATH ${PATH}:/go/bin
 ENV GO111MODULE=on
 ENV CGO_ENABLED=0
